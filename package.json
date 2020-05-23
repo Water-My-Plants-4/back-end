@@ -8,7 +8,6 @@
     "server": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --runInBand"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anthonyj713/back-end.git"
@@ -35,7 +34,7 @@
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   },
-  "jest":{
+  "jest": {
     "testEnvironment": "node"
   }
 }
