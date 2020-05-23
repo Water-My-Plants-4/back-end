@@ -1,9 +1,11 @@
 const express = require('express');
 const Plants = require('./plants-model');
+const restricted = require('../auth/auth-router')
+
 
 const router = express.Router();
 
-router.get('/plants', (req, res) => {
+router.get('/plants', restricted, (req, res) => {
     Plants.findPlants()
         .then((plants) => {
             res.json(plants);
@@ -23,7 +25,7 @@ router.get('/species', (req, res) => {
         });
 });
 
-router.get('/plants/:id', (req, res) => {
+router.get('/plants/:id', restricted, (req, res) => {
     const { id } = req.params;
 
     Plants.findPlantById(id)
@@ -59,7 +61,7 @@ router.get('/species/:id', (req, res) => {
         });
 });
 
-router.post('/plants', (req, res) => {
+router.post('/plants', restricted, (req, res) => {
     const plantData = req.body;
 
     Plants.addPlant(plantData)
@@ -71,7 +73,7 @@ router.post('/plants', (req, res) => {
         });
 });
 
-router.post('/species', (req, res) => {
+router.post('/species', restricted, (req, res) => {
     const speciesData = req.body
 
     Plants.addSpecies(speciesData).then((species) => {
@@ -81,7 +83,7 @@ router.post('/species', (req, res) => {
     })
 })
 
-router.put('/plants/:id', (req, res) => {
+router.put('/plants/:id', restricted, (req, res) => {
     const { id } = req.params
     const changes = req.body
     
@@ -98,7 +100,7 @@ router.put('/plants/:id', (req, res) => {
     })
 })
 
-router.put('/species/:id', (req, res) => {
+router.put('/species/:id', restricted, (req, res) => {
     const { id } = req.params
     const changes = req.body
     
@@ -115,7 +117,7 @@ router.put('/species/:id', (req, res) => {
     })
 })
 
-router.delete('/plants/:id', (req, res) => {
+router.delete('/plants/:id', restricted, (req, res) => {
     const { id } = req.params
 
     Plants.removePlant(id).then(deleted => {
@@ -129,7 +131,7 @@ router.delete('/plants/:id', (req, res) => {
     })
 })
 
-router.delete('/species/;id', (req, res) => {
+router.delete('/species/;id',restricted,  (req, res) => {
     Plants.removeSpecies(id).then(deleted => {
         if (delted) {
             res.json({ removed: deleted })
