@@ -29,8 +29,8 @@ const findSpeciesById = (id) => {
     return db('species').where({ id }).first();
 };
 
-const addPlant = (plants) => {
-    return db('plants').insert(plants).where();
+const addPlant = (plant) => {
+    return db('plants').insert(plant).where();
 };
 
 const addSpecies = (species) => {
