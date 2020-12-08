@@ -26,7 +26,7 @@ server.use('/users', usersRouter);
 server.use('/plants', plantsRouter);
 
 // once user is authenticated, can check that the api is up at localhost:5001/
-server.get('/', restricted, (req, res) => {
+server.get('/', (req, res) => {
     res.json({
         api: 'up',
     });
